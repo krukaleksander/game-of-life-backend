@@ -1,21 +1,20 @@
-export class Board {
-  private id: number;
-  private arrayOfBoards: [] | IBoard[];
-  constructor() {
-    this.id = 0;
-    this.arrayOfBoards = [];
-  }
-  public init(board: RequestBoard) {
-    this.arrayOfBoards = [...this.arrayOfBoards, ...[{ id: this.id, board }]];
-    this.id += 1;
-  }
-}
-
-interface IBoard {
-  id: number;
-  board: RequestBoard;
-}
-
 type Cell = number;
 type Row = Cell[];
-export type RequestBoard = Row[];
+export type IBoard = Row[];
+
+export class Board {
+  private id: number;
+  private boardObject: { key: IBoard } | Record<string, never>;
+  constructor() {
+    this.id = 0;
+    this.boardObject = {};
+  }
+  public init(board: IBoard) {
+    this.boardObject[this.id.toString()] = board;
+    this.id += 1;
+    return this;
+  }
+  public showDbOfBoards() {
+    return this.boardObject;
+  }
+}
