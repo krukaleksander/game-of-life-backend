@@ -1,10 +1,6 @@
 import { Board } from './Board';
 
 describe('Board Class', function () {
-  it('should return db of boards', function () {
-    const boardDb = new Board();
-    expect(boardDb.showDbOfBoards()).toEqual({});
-  });
   it('should return id of board after adding a board', function () {
     const boardDb = new Board();
     const exampleBoard = [
@@ -28,9 +24,7 @@ describe('Board Class', function () {
     ];
     const idOfBoard = boardDb.init(exampleBoard);
     expect(
-      boardDb.changeStateOfBoard(idOfBoard, changedBoard).showDbOfBoards(),
-    ).toEqual({
-      '0': changedBoard,
-    });
+      boardDb.changeStateOfBoard(idOfBoard, changedBoard).findBoard('0'),
+    ).toEqual(changedBoard);
   });
 });
