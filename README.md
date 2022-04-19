@@ -4,12 +4,14 @@
 Use http://localhost:3000/game endpoint and pass in body as JSON your board:
 
 For example: 
-```{
+```
+{
 "board": [
 [0, 0, 0],
 [0, 1, 0],
 [0, 0, 0]
-]}
+]
+}
 ```
 Result will be a status and a change:
 
