@@ -1,7 +1,7 @@
 
 ## How it Works
 
-Use http://localhost:3000/game endpoint and pass in body as JSON your board:
+Use http://localhost:4000/game endpoint and pass in body as JSON your board:
 
 For example: 
 ```
