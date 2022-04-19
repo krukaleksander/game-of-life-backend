@@ -15,10 +15,16 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/game (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
+      .get('/game')
+      .send({
+        board: [
+          [0, 0, 0],
+          [0, 1, 0],
+          [0, 0, 0],
+        ],
+      })
       .expect('Hello World!');
   });
 });
