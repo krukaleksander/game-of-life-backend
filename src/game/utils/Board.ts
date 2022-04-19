@@ -17,4 +17,8 @@ export class Board {
   public showDbOfBoards() {
     return this.boardObject;
   }
+
+  findBoard(id: string) {
+    return this.boardObject[id];
+  }
 }
