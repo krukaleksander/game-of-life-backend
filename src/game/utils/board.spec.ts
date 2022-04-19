@@ -23,8 +23,7 @@ describe('Board Class', function () {
       [0, 0, 0],
     ];
     const idOfBoard = boardDb.init(exampleBoard);
-    expect(
-      boardDb.changeStateOfBoard(idOfBoard, changedBoard).findBoard('0'),
-    ).toEqual(changedBoard);
+    boardDb.changeStateOfBoard(idOfBoard, changedBoard)
+    expect(boardDb.findBoard('0')).toEqual(changedBoard);
   });
 });

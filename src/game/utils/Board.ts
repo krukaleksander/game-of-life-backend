@@ -19,6 +19,6 @@ export class Board {
   }
   public changeStateOfBoard(id: string, newBoard: IBoard) {
     this.boardObject[id] = newBoard;
-    return this;
+    return;
   }
 }

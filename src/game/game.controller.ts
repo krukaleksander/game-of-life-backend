@@ -14,7 +14,7 @@ export class GameController {
     return this.gameService.setInitialBoard(board);
   }
   @Post('/tick')
-  sendBoardAfterTick(@Body() id: TickRequestDto): TickResponseDto {
+  sendBoardAfterTick(@Body() id: TickRequestDto) {
     return this.gameService.sendBoardAfterTick(id);
   }
 }
