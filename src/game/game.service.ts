@@ -11,4 +11,12 @@ export class GameService {
       result: new GameOfLife(board.board).tick().getState(),
     };
   }
+
+  setInitialBoard(board: GameDto) {
+    return undefined;
+  }
+
+  sendBoardAfterTick(board: any) {
+    return undefined;
+  }
 }
