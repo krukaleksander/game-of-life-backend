@@ -18,7 +18,11 @@ export class Board {
     return this.boardObject;
   }
 
-  findBoard(id: string) {
+  public findBoard(id: string) {
     return this.boardObject[id];
+  }
+  public changeStateOfBoard(id: string, newBoard: IBoard) {
+    this.boardObject[id] = newBoard;
+    return this;
   }
 }

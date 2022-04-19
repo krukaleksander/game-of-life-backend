@@ -16,13 +16,25 @@ describe('Board Class', function () {
       '0': exampleBoard,
     });
   });
-  it('should find requested board', function () {
+  it('should change state of existing board', function () {
     const boardDb = new Board();
     const exampleBoard = [
+      [0, 0, 0],
+      [0, 1, 0],
+      [0, 0, 0],
+    ];
+    const changedBoard = [
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],
     ];
-    expect(boardDb.init(exampleBoard).findBoard('0')).toEqual(exampleBoard);
+    expect(
+      boardDb
+        .init(exampleBoard)
+        .changeStateOfBoard('0', changedBoard)
+        .showDbOfBoards(),
+    ).toEqual({
+      '0': changedBoard,
+    });
   });
 });
