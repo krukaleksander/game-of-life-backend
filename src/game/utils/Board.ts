@@ -12,7 +12,7 @@ export class Board {
   public init(board: IBoard) {
     this.boardObject[this.id.toString()] = board;
     this.id += 1;
-    return this;
+    return (this.id - 1).toString();
   }
   public showDbOfBoards() {
     return this.boardObject;

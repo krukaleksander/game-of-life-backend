@@ -6,13 +6,6 @@ import { InitialResponseDto } from './dto/initialResponse.dto';
 
 @Injectable()
 export class GameService {
-  getResult(board: GameDto): TickResponseDto {
-    return {
-      status: 200,
-      result: new GameOfLife(board.board).tick().getState(),
-    };
-  }
-
   setInitialBoard(board: GameDto): InitialResponseDto {
     return undefined;
   }
