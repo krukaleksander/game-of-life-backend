@@ -1,6 +1,6 @@
 import { Board } from '../../utils/GameOfLife';
 
-export class GameResponseDto {
+export class TickResponseDto {
   status: number;
   result: Board;
 }

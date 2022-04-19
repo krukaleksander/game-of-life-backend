@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { GameOfLife } from '../utils/GameOfLife';
 import { GameDto } from './dto/game.dto';
-import { GameResponseDto } from './dto/gameResponse.dto';
+import { TickResponseDto } from './dto/tickResponse.dto';
 
 @Injectable()
 export class GameService {
-  getResult(board: GameDto): GameResponseDto {
+  getResult(board: GameDto): TickResponseDto {
     return {
       status: 200,
       result: new GameOfLife(board.board).tick().getState(),
