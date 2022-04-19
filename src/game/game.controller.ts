@@ -9,7 +9,6 @@ export class GameController {
 
   @Get('/')
   getResult(@Body() board: GameDto): GameResponseDto {
-    console.log(board);
     return this.gameService.getResult(board);
   }
 }
