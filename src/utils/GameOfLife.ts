@@ -16,8 +16,7 @@ export class GameOfLife {
           cellIndex,
           rowIndex,
         });
-        const valueAfterTick = new CellOfLife(cell, neighboursNumber).tick();
-        return valueAfterTick;
+        return new CellOfLife(cell, neighboursNumber).tick();
       });
     });
     return this;
@@ -32,7 +31,7 @@ export class GameOfLife {
   }
 }
 
-type Cell = number;
+type Cell = 0 | 1;
 type Row = Cell[];
 export type Board = Row[];
 
@@ -41,45 +40,27 @@ type CellPosition = {
   cellIndex: number;
 };
 
-const getRowNeighbourValue = (
-  row: Row,
-  rowIndex: number,
-  cellPosition: CellPosition,
-) => {
-  const isCellBefore = cellPosition.cellIndex - 1 >= 0;
-  const isCellAfter = cellPosition.cellIndex + 1 <= row.length - 1;
-  const isCellMiddle = rowIndex !== cellPosition.rowIndex;
-  const cellBeforeValue = isCellBefore ? row[cellPosition.cellIndex - 1] : 0;
-  const cellAfterValue = isCellAfter ? row[cellPosition.cellIndex + 1] : 0;
-  const cellMiddleValue = isCellMiddle ? row[cellPosition.cellIndex] : 0;
-  return cellBeforeValue + cellAfterValue + cellMiddleValue;
+export const getCellValue = (
+  row: undefined | number[],
+  cellIndex: number,
+): Cell => {
+  if (row === undefined) return 0;
+  return row[cellIndex] === 1 ? 1 : 0;
 };
 
 export const getNeighboursNumber = (
   inputBoard: Board,
   cellPosition: CellPosition,
 ): number => {
-  let sum = 0;
-  const isRowBefore = cellPosition.rowIndex - 1 >= 0;
-  const isRowAfter = cellPosition.rowIndex + 1 <= inputBoard.length - 1;
-
-  if (isRowBefore) {
-    const rowIndex = cellPosition.rowIndex - 1;
-    const row = inputBoard[rowIndex];
-    sum += getRowNeighbourValue(row, rowIndex, cellPosition);
-  }
-
-  sum += getRowNeighbourValue(
-    inputBoard[cellPosition.rowIndex],
-    cellPosition.rowIndex,
-    cellPosition,
+  const { cellIndex, rowIndex } = cellPosition;
+  return (
+    getCellValue(inputBoard[rowIndex - 1], cellIndex - 1) +
+    getCellValue(inputBoard[rowIndex - 1], cellIndex) +
+    getCellValue(inputBoard[rowIndex - 1], cellIndex + 1) +
+    getCellValue(inputBoard[rowIndex], cellIndex - 1) +
+    getCellValue(inputBoard[rowIndex], cellIndex + 1) +
+    getCellValue(inputBoard[rowIndex + 1], cellIndex - 1) +
+    getCellValue(inputBoard[rowIndex + 1], cellIndex) +
+    getCellValue(inputBoard[rowIndex + 1], cellIndex + 1)
   );
-
-  if (isRowAfter) {
-    const rowIndex = cellPosition.rowIndex + 1;
-    const row = inputBoard[rowIndex];
-    sum += getRowNeighbourValue(row, rowIndex, cellPosition);
-  }
-
-  return sum;
 };
